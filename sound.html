@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sound Room</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: linear-gradient(to bottom, #111, #000);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    h1 {
+      color: #66ccff;
+      text-shadow: 0 0 15px #66ccff;
+    }
+
+    audio {
+      margin-top: 20px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 1.2em;
+      border-radius: 8px;
+      border: none;
+      width: 300px;
+      text-align: center;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #444;
+      color: white;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background-color: #666;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <p>⏰ 제한 시간: <span id="time">2:00</span></p>
+  <h1>🎧 Sound Room</h1>
+  <p>아래 음성을 듣고, ‘wanna’는 무엇의 축약형인지 쓰시오.</p>
+
+  <audio controls>
+    <source src="sounds/wanna.mp3" type="audio/mpeg">
+    브라우저가 오디오를 지원하지 않습니다.
+  </audio>
+
+  <br><br>
+  <input type="text" id="answer" placeholder="정답 입력 ">
+  <br><br>
+  <button onclick="checkAnswer()">정답 제출</button>
+  <button onclick="showHint()">💡 힌트 보기</button>
+  <button onclick="showAnswer()">✅ 정답 보기</button>
+
+  <p id="result"></p>
+
+  <script>
+    function checkAnswer() {
+      const input = document.getElementById('answer').value.toLowerCase().trim();
+      if (input === 'want to') {
+        document.getElementById('result').textContent = '🎉 정답입니다! 다음 방으로 이동합니다.';
+        setTimeout(() => {
+          window.location.href = 'riddle.html';
+        }, 1500);
+      } else {
+        document.getElementById('result').textContent = '❌ 오답입니다. 다시 들어보고 시도해보세요!';
+      }
+    }
+
+    function showHint() {
+      alert("💡 힌트: ‘wanna’는 '~하고 싶다'는 뜻이에요. 원형은 두 단어입니다!");
+    }
+
+    function showAnswer() {
+      alert("✅ 정답은 'want to' 입니다.");
+    }
+  </script>
+
+  <script src="timer.js"></script>
+  <script>
+    startTimer(120, 'jail.html?return=sound.html');
+  </script>
+</body>
+</html>

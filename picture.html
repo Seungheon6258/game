@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Picture Room</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: radial-gradient(circle at center, #1c1c1c, #000);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    h1 {
+      color: #00ccff;
+      text-shadow: 0 0 15px #00ccff;
+    }
+
+    img {
+      margin-top: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 204, 255, 0.4);
+    }
+
+    select {
+      margin-top: 20px;
+      font-size: 1.1em;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #444;
+      color: white;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background-color: #666;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <p>⏰ 제한 시간: <span id="time">2:00</span></p>
+  <h1>🖼️ Picture Room</h1>
+  <p>이미지를 보고 해당하는 단어를 선택하세요.</p>
+
+  <img src="images/beach.jpg" alt="파도가 치는 해변 사진" width="600"> <br>
+
+  <select id="answer">
+    <option value="">-- 정답 선택 --</option>
+    <option value="desert">desert</option>
+    <option value="beach">beach</option>
+    <option value="mountain">mountain</option>
+  </select>
+
+  <br><br>
+  <button onclick="checkAnswer()">정답 제출</button>
+  <button onclick="showHint()">💡 힌트 보기</button>
+  <button onclick="showAnswer()">✅ 정답 보기</button>
+
+  <p id="result"></p>
+
+  <script>
+    function checkAnswer() {
+      const input = document.getElementById('answer').value;
+      if (input === 'beach') {
+        document.getElementById('result').textContent = '🎉 정답입니다! 다음 방으로 이동합니다.';
+        setTimeout(() => {
+          window.location.href = 'library.html';
+        }, 1500);
+      } else {
+        document.getElementById('result').textContent = '❌ 오답입니다. 다시 선택해보세요!';
+      }
+    }
+
+    function showHint() {
+      alert("💡 힌트: 파도, 모래, 바다… 어디일까요?");
+    }
+
+    function showAnswer() {
+      alert("✅ 정답은 beach 입니다.");
+    }
+  </script>
+
+  <script src="timer.js"></script>
+  <script>
+    startTimer(120, 'jail.html?return=picture.html');
+  </script>
+</body>
+</html>
