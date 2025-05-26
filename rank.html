@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🏆 실시간 랭킹</title>
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      padding-top: 40px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: gold;
+      text-shadow: 0 0 10px gold;
+    }
+
+    .iframe-wrapper {
+      background-color: #222;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+      display: inline-block;
+      margin-top: 30px;
+    }
+
+    iframe {
+      width: 90vw;
+      height: 500px;
+      border: none;
+      border-radius: 8px;
+      background-color: white; /* 시트 배경 */
+    }
+
+    button {
+      margin-top: 40px;
+      padding: 12px 24px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #444;
+      color: white;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background-color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>🏆 실시간 TOP 10 랭킹</h1>
+
+  <div class="iframe-wrapper">
+    <iframe 
+      src="https://docs.google.com/spreadsheets/d/1fy5clHGeoete3PpsjXmRuunnMF5QwXSWd8eKJJ3tvWI/preview" 
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <br><br>
+  <button onclick="window.location.href='https://seungheon6258.github.io/game/index.html'">🏠 처음으로 돌아가기</button>
+</body>
+</html>

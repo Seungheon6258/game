@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Library - Reading Room</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: linear-gradient(to bottom, #2f2f2f, #1a1a1a);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    h1 {
+      color: #ffcc66;
+      text-shadow: 0 0 10px #ffcc66;
+    }
+
+    #question {
+      margin: 30px auto;
+      width: 60%;
+      font-size: 1.2em;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 1.1em;
+      border-radius: 8px;
+      border: none;
+      width: 250px;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #444;
+      color: white;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #666;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <p>⏰ 제한 시간: <span id="time">2:00</span></p>
+  <h1>📚 Library (도서관)</h1>
+  <p>아래 지문을 읽고 정답을 입력하세요.</p>
+
+  <div id="question">
+    <p>Emma goes to the park every weekend. She plays soccer and meets her friends.</p>
+    <p><strong>Q:</strong> Where does Emma go every weekend?</p>
+    <input type="text" id="answer" placeholder="정답 입력 ">
+  </div>
+
+  <button onclick="checkAnswer()">정답 제출</button>
+  <button onclick="showHint()">💡 힌트 보기</button>
+  <button onclick="showAnswer()">✅ 정답 보기</button>
+
+  <p id="result"></p>
+
+  <script>
+    function checkAnswer() {
+      const input = document.getElementById('answer').value.toLowerCase().trim();
+      if (input === 'park') {
+        document.getElementById('result').textContent = '🎉 정답입니다! 다음 방으로 이동하세요.';
+        setTimeout(() => {
+          window.location.href = 'https://seungheon6258.github.io/game/puzzle.html';
+        }, 1500);
+      } else {
+        document.getElementById('result').textContent = '❌ 틀렸습니다. 다시 시도해보세요!';
+      }
+    }
+
+    function showHint() {
+      alert("💡 힌트: 친구들과 운동을 하러 가는 장소입니다. 공원은 영어로?");
+    }
+
+    function showAnswer() {
+      alert("✅ 정답은 'park'입니다!");
+    }
+  </script>
+
+  <script src="timer.js"></script>
+  <script>
+    startTimer(120, 'jail.html?return=https://seungheon6258.github.io/game/library.html');
+  </script>
+</body>
+</html>

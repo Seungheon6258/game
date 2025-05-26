@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎉 탈출 성공!</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: linear-gradient(to bottom, #000000, #1a1a1a);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding-top: 80px;
+    }
+
+    h1 {
+      color: gold;
+      font-size: 2.5em;
+      text-shadow: 0 0 10px gold;
+    }
+
+    #typewriter {
+      white-space: pre-line;
+      font-size: 1.3em;
+      margin-top: 30px;
+    }
+
+    #timer-result {
+      font-size: 1.2em;
+      margin-top: 40px;
+      color: #aaa;
+    }
+
+    .btn-group {
+      margin-top: 40px;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #444;
+      color: white;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background-color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎊 탈출 성공!</h1>
+  <div id="typewriter"></div>
+  <p id="timer-result"></p>
+
+  <div class="btn-group">
+    <button onclick="goToStart()">🏠 게임 다시 시작하기</button>
+    <button onclick="goToRank()">🏆 랭킹 보기</button>
+  </div>
+
+  <script>
+    const name = localStorage.getItem('nickname') || '익명';
+    const endTime = Date.now();
+    const startTime = parseInt(localStorage.getItem('startTime'), 10) || endTime;
+    const elapsed = endTime - startTime;
+
+    const minutes = Math.floor(elapsed / 60000);
+    const seconds = Math.floor((elapsed % 60000) / 1000);
+    const formatted = `${minutes}분 ${seconds}초`;
+
+    // 소요 시간 출력
+    document.getElementById("timer-result").textContent = `⏱️ 총 소요 시간: ${formatted}`;
+
+    // 메시지 타자 효과 출력
+    const text = `🎓 ${name}님, 축하합니다!
+당신은 영어 마법사의 저택에서 모든 방을 통과하고
+영광의 탈출에 성공했습니다!`;
+
+    let i = 0;
+    const speed = 50;
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("typewriter").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+    typeWriter();
+
+    // Google Sheets로 전송
+    fetch('https://script.google.com/macros/s/AKfycbzykGq9pt9ulId3PCdw3FsgaXxyizuMDll16qdJymxqXynm2M6kBa-XFWFacRkP91ix/exec', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: name,
+        time: elapsed
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log("✅ 랭킹 기록 성공:", data);
+    })
+    .catch(error => {
+      console.error("❌ 저장 실패:", error);
+    });
+
+    // 처음으로
+    function goToStart() {
+      localStorage.removeItem('startTime');
+      localStorage.removeItem('nickname');
+      window.location.href = 'https://seungheon6258.github.io/game/index.html';
+    }
+
+    // 랭킹 보기
+    function goToRank() {
+      window.location.href = 'https://seungheon6258.github.io/game/rank.html';
+    }
+  </script>
+</body>
+</html>
