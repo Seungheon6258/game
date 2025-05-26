@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mystery Escape - Entrance Hall</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: radial-gradient(circle at top, #2c2c2c, #000);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding-top: 60px;
+    }
+
+    h1 {
+      color: gold;
+      text-shadow: 0 0 15px gold;
+    }
+
+    #question-container {
+      margin-top: 30px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 1.2em;
+      border-radius: 8px;
+      border: none;
+      width: 280px;
+      text-align: center;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #444;
+      color: white;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background-color: #666;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <p>⏰ 제한 시간: <span id="time">2:00</span></p>
+  <h1>🔓 Entrance Hall</h1>
+  <p>문제를 풀고 다음 방으로 넘어가세요!</p>
+
+  <div id="question-container">
+    <p>How do you spell the word for an animal that says 'meow'?</p>
+    <input type="text" id="answer" placeholder="정답 입력">
+  </div>
+
+  <br>
+  <button onclick="checkAnswers()">정답 제출</button>
+  <button onclick="showHint()">💡 힌트 보기</button>
+  <button onclick="showAnswer()">✅ 정답 보기</button>
+
+  <p id="result"></p>
+
+  <script>
+    function checkAnswers() {
+      const answer = document.getElementById('answer').value.toLowerCase().trim();
+      if (answer === 'cat') {
+        document.getElementById('result').textContent = "🎉 정답! 다음 방으로 이동합니다.";
+        setTimeout(() => {
+          window.location.href = "https://seungheon6258.github.io/game/picture.html";
+        }, 1500);
+      } else {
+        document.getElementById('result').textContent = "❌ 틀렸습니다. 다시 시도해보세요!";
+      }
+    }
+
+    function showHint() {
+      alert("💡 힌트: 귀여운 반려동물이에요.");
+    }
+
+    function showAnswer() {
+      alert("✅ 정답은 'cat'입니다!");
+    }
+  </script>
+
+  <script src="timer.js"></script>
+  <script>
+    startTimer(120, 'jail.html?return=https://seungheon6258.github.io/game/start.html'); // 120초 = 2분
+  </script>
+</body>
+</html>
