@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Sealed Hall</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: radial-gradient(circle at top, #2c2c2c, #000);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 40px 20px 0;
+    }
+
+    h1 {
+      color: gold;
+      text-shadow: 0 0 15px gold;
+    }
+
+    .story {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    #question-container {
+      margin-top: 20px;
+    }
+
+    select {
+      padding: 10px;
+      font-size: 1.2em;
+      border-radius: 8px;
+      border: none;
+      width: 280px;
+      text-align: center;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #444;
+      color: white;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background-color: #666;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <p>⏰ 제한 시간: <span id="time">2:00</span></p>
+  <h1>🔓 The Sealed Foyer</h1>
+
+  <div class="story"><br>
+    문이 스스로 닫혔다... 여긴 뭐지? 이 마법진을 해제하려면 단어를 맞춰야 해!<br><br><br>
+    당신은 낡은 문을 밀고 들어옵니다.<br>
+    사방은 침묵에 잠긴 채, 먼지 쌓인 촛대만이 흔들립니다.<br>
+    문이 닫히며 속삭이는 목소리가 들려옵니다.<br><br>
+    <em>“이 저택의 비밀을 풀지 못하면, 너는 영원히 갇히게 될 것이다...”</em><br><br>
+    첫 번째 시련이 당신을 기다립니다.
+  </div>
+
+  <p>다음 설명에 가장 알맞은 단어를 고르세요:</p>
+
+  <div id="question-container">
+    <p><strong>A long trip from one place to another</strong></p>
+    <select id="answer">
+      <option value="">-- 정답 선택 --</option>
+      <option value="project">project</option>
+      <option value="journey">journey</option>
+      <option value="job">job</option>
+    </select>
+  </div>
+
+  <br>
+  <button onclick="checkAnswers()">정답 제출</button>
+  <button onclick="showHint()">💡 힌트 보기</button>
+  <button onclick="showAnswer()">✅ 정답 보기</button>
+
+  <p id="result"></p>
+
+  <script>
+    function checkAnswers() {
+      const answer = document.getElementById('answer').value;
+      if (answer === 'journey') {
+        document.getElementById('result').textContent = "🎉 정답! 다음 방으로 이동합니다.";
+        setTimeout(() => {
+          window.location.href = "https://seungheon6258.github.io/game/picture.html";
+        }, 1500);
+      } else {
+        document.getElementById('result').textContent = "❌ 틀렸습니다. 다시 시도해보세요!";
+      }
+    }
+
+    function showHint() {
+      alert("💡 힌트: 7글자예요!");
+    }
+
+    function showAnswer() {
+      alert("✅ 정답은 'journey'입니다!");
+    }
+  </script>
+
+  <script src="timer.js"></script>
+  <script>
+    startTimer(120, 'jail.html?return=https://seungheon6258.github.io/game/start.html');
+  </script>
+</body>
+</html>

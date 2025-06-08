@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Haunted Gallery</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: radial-gradient(circle at center, #1a1a2e, #000);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    h1 {
+      color: #66fcf1;
+      text-shadow: 0 0 15px #66fcf1;
+    }
+
+    p.story {
+      font-style: italic;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+
+    img {
+      margin-top: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
+    }
+
+    select {
+      margin-top: 20px;
+      font-size: 1.1em;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #444;
+      color: white;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background-color: #666;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <p>⏰ 제한 시간: <span id="time">2:00</span></p>
+  <h1>🖼️ The Illusion Gallery</h1>
+  <p class="story"><br>“이 그림 속에서 뭔가 뜨겁고 위험한 느낌이 나… 이곳을 빠져나가려면 이게 뭘 의미하는지 맞춰야겠어!”
+    <br><br><br><br>당신은 온통 환영으로 가득 찬 기묘한 전시관에 들어섰습니다.<br>착시 속 진실을 꿰뚫어봐야만 다음 문이 열립니다.</p>
+
+  <img src="images/valcano.jpg" alt="용암이 분출하는 사진" width="600"><br>
+
+  <select id="answer">
+    <option value="">-- 정답 선택 --</option>
+    <option value="cave">cave</option>
+    <option value="volcano">volcano</option>
+    <option value="mountain">mountain</option>
+  </select>
+
+  <br><br>
+  <button onclick="checkAnswer()">정답 제출</button>
+  <button onclick="showHint()">💡 힌트 보기</button>
+  <button onclick="showAnswer()">✅ 정답 보기</button>
+
+  <p id="result"></p>
+
+  <script>
+    function checkAnswer() {
+      const input = document.getElementById('answer').value;
+      if (input === 'volcano') {
+        document.getElementById('result').textContent = '🎉 정답입니다! 다음 방으로 이동합니다.';
+        setTimeout(() => {
+          window.location.href = 'library.html';
+        }, 1500);
+      } else {
+        document.getElementById('result').textContent = '❌ 오답입니다. 다시 시도해보세요!';
+      }
+    }
+
+    function showHint() {
+      alert("💡 힌트: magma, ash, lava... 무엇일까요?");
+    }
+
+    function showAnswer() {
+      alert("✅ 정답은 volcano예요 :)");
+    }
+  </script>
+
+  <script src="timer.js"></script>
+  <script>
+    startTimer(120, 'jail.html?return=picture.html');
+  </script>
+</body>
+</html>

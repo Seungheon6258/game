@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Final Gate</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: radial-gradient(circle, #1a1a1a, #000);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    h1 {
+      color: gold;
+      text-shadow: 0 0 12px gold;
+    }
+
+    .story {
+      margin: 20px auto;
+      width: 80%;
+      font-size: 1.1em;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    .question-box {
+      width: 80%;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+    }
+
+    select {
+      font-size: 1.1em;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+      width: 60%;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #444;
+      color: white;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background-color: #666;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <p>⏰ 제한 시간: <span id="time">2:00</span></p>
+  <h1>🚪 The Final Magic Circle</h1>
+
+  <div class="story"><br>“이제 마지막이야... 여기서 틀리면 모든게 물거품이 돼 집중하자.”<br><br><br>
+    <p>마지막 문 앞에서, 당신을 기다리던 마법사가 목소리를 울립니다.</p>
+    <p><em>"지식과 감정을 동시에 꿰뚫어야 진정한 탈출자라 할 수 있지."</em></p>
+    <p>Olivia의 이야기를 듣고, 왜 그녀가 좌절했는지 올바르게 추론해보세요.</p>
+  </div>
+
+  <div class="question-box">
+    <p><strong>지문:</strong></p>
+    <p>
+      Olivia stayed up late finishing her science project.<br>
+      The next morning, she overslept and missed the school bus.<br>
+      When she finally arrived at school, she realized she had left her project at home.<br>
+      She felt frustrated because all her hard work seemed wasted.
+    </p>
+    <p><strong>Q:</strong> What best explains why Olivia was frustrated?</p>
+
+    <select id="answer">
+      <option value="">-- 정답을 선택하세요 --</option>
+      <option value="A">A. She had to finish her science project at school without help.</option>
+      <option value="B">B. She was late to school and had forgotten the project she worked hard on.</option>
+      <option value="C">C. Her teacher told her to redo the project from the beginning.</option>
+      <option value="D">D. She didn’t care much about the project and forgot it on purpose.</option>
+    </select>
+  </div>
+
+  <button onclick="checkAnswer()">정답 제출</button>
+  <button onclick="showHint()">💡 힌트 보기</button>
+  <button onclick="showAnswer()">✅ 정답 보기</button>
+
+  <p id="result"></p>
+
+  <script>
+    function checkAnswer() {
+      const selected = document.getElementById('answer').value;
+      if (selected === 'B') {
+        document.getElementById('result').textContent = '🎉 정답입니다! 마지막 문이 열립니다... 탈출 성공!';
+        setTimeout(() => {
+          window.location.href = 'https://seungheon6258.github.io/game/end.html';
+        }, 1500);
+      } else {
+        document.getElementById('result').textContent = '❌ 오답입니다. 감옥으로 이동합니다!';
+        setTimeout(() => {
+          window.location.href = 'jail.html?return=https://seungheon6258.github.io/game/final.html';
+        }, 1500);
+      }
+    }
+
+    function showHint() {
+      alert("💡 힌트: Olivia는 프로젝트를 열심히 했지만 제출할 수 없었어요. 왜일까요?");
+    }
+
+    function showAnswer() {
+      alert("✅ 정답은 B입니다. 늦게 도착했고, 프로젝트도 두고 왔기 때문이에요.");
+    }
+  </script>
+
+  <script src="timer.js"></script>
+  <script>
+    startTimer(120, 'jail.html?return=https://seungheon6258.github.io/game/final.html');
+  </script>
+</body>
+</html>

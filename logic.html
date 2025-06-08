@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Logic Lock Room</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: linear-gradient(to bottom, #1e1e1e, #000);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    h1 {
+      color: #33cc99;
+      text-shadow: 0 0 15px #33cc99;
+    }
+
+    .story {
+      margin: 20px auto;
+      width: 80%;
+      font-size: 1.1em;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 1.1em;
+      border-radius: 8px;
+      border: none;
+      width: 300px;
+      text-align: center;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #444;
+      color: white;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background-color: #666;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <p>⏰ 제한 시간: <span id="time">2:00</span></p>
+  <h1>🧠 The Logic Seal Vault</h1>
+
+  <div class="story"><br>"이 단어들을 순서로 배열해야 자물쇠를 열 수 있어!"<br><br><br>
+    <p>철문 앞에는 고대 마법의 자물쇠가 걸려 있습니다.<br>
+    <strong>단 하나의 정확한 문장</strong>만이 이 방의 잠금을 풀 수 있다고 합니다.<br>
+    단어를 올바르게 조합해 문장을 완성하세요.</p>
+  </div>
+
+  <p><strong>school / to / goes / He / every day</strong></p>
+
+  <input type="text" id="answer" placeholder="정답 문장을 입력하세요 (전부 소문자로)">
+  <br><br>
+
+  <button onclick="checkAnswer()">정답 제출</button>
+  <button onclick="showHint()">💡 힌트 보기</button>
+  <button onclick="showAnswer()">✅ 정답 보기</button>
+
+  <p id="result"></p>
+
+  <script>
+    function checkAnswer() {
+      const input = document.getElementById('answer').value.toLowerCase().trim();
+      const correct = "he goes to school every day";
+      if (input === correct) {
+        document.getElementById('result').textContent = '🎉 정답입니다! 마지막 문으로 이동합니다.';
+        setTimeout(() => {
+          window.location.href = 'https://seungheon6258.github.io/game/final.html';
+        }, 1500);
+      } else {
+        document.getElementById('result').textContent = '❌ 오답입니다. 감옥으로 이동합니다!';
+        setTimeout(() => {
+          window.location.href = 'jail.html?return=https://seungheon6258.github.io/game/logic.html';
+        }, 1500);
+      }
+    }
+
+    function showHint() {
+      alert("💡 힌트: 문장의 처음은 he, 3번째는 to!");
+    }
+
+    function showAnswer() {
+      alert("✅ 정답은 'he goes to school every day'입니다.");
+    }
+  </script>
+
+  <script src="timer.js"></script>
+  <script>
+    startTimer(120, 'jail.html?return=https://seungheon6258.github.io/game/logic.html');
+  </script>
+</body>
+</html>
